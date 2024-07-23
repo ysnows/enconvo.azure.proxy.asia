@@ -1,10 +1,28 @@
 import { app, HttpRequest, HttpResponseInit, InvocationContext } from "@azure/functions";
+import { createClient } from "@supabase/supabase-js";
 import { RtcRole, RtcTokenBuilder } from "agora-token";
 
 export async function generateRTCToken(request: HttpRequest, context: InvocationContext): Promise<HttpResponseInit> {
 
     const body: any = await request.json();
-    context.log(`body:${JSON.stringify(process.env)}`);
+
+    const realAuthorization = request.headers.get('accessToken');
+    console.log("realAuthorization:", realAuthorization)
+
+    // const supabase = createClient(process.env.SUPABASE_URL, process.env.SUPABASE_KEY, {
+    //     global: {
+    //         headers: { Authorization: `Bearer ${realAuthorization}` },
+    //     },
+    // });
+
+    // // Now we can get the session or user object
+    // const {
+    //     data: { user },
+    // } = await supabase.auth.getUser();
+
+    // console.log("user:", user);
+
+
 
     // Rtc Examples
     const appID = process.env.RTC_APPID;
