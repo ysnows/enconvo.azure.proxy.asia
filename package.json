@@ -8,10 +8,13 @@
     "clean": "rimraf dist",
     "prestart": "npm run clean && npm run build",
     "start": "func start",
+    "dev": "func start && npm run watch",
     "test": "echo \"No tests yet...\""
   },
   "dependencies": {
-    "@azure/functions": "^4.0.0"
+    "@azure/functions": "^4.0.0",
+    "@schneehertz/google-it": "^1.7.3",
+    "agora-token": "./rtc"
   },
   "devDependencies": {
     "@types/node": "^18.x",
